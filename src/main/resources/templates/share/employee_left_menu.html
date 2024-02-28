@@ -1,0 +1,91 @@
+<div th:fragment="employee" class="left">
+	<th:block th:if="${#authentication.getPrincipal().users.role == 'ROLE_EMPLOYEE'}">
+	   <span class="left__icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                    <div class="left__content">
+                        <div class="left__logo">OLALA</div>
+                        <div class="left__profile">
+                            <div class="left__image"><img th:src="@{/markup/admin/images/olala.png}" alt=""></div>
+                             <p th:text="${#authentication.getPrincipal().users.fullName}" class="left__name">Le Uyen</p>
+                        </div>
+                        <ul class="left__menu">  
+                            <li class="left__menuItem">
+                                <a href="view_customers.html" class="left__title"><img th:src="@{/markup/admin/assets/icon-users.svg}" alt="">Tài khoản</a>
+                            </li>
+                            <li class="left__menuItem">
+                                <a th:href="@{/employee/handleOrder}" class="left__title"><img th:src="@{/markup/admin/assets/icon-book.svg}" alt="">Đơn Đặt Hàng</a>
+                            </li>
+                
+                     
+                            <li class="left__menuItem">
+                                <a href="/logout" class="left__title"><img th:src="@{/markup/admin/assets/icon-logout.svg}" alt="">Đăng Xuất</a>
+                            </li>
+                        </ul>
+                    </div>
+	</th:block>
+	
+	
+	<th:block th:if="${#authentication.getPrincipal().users.role == 'ROLE_ADMIN'}">
+	    <span class="left__icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                    <div class="left__content">
+                        <div class="left__logo">OLALA</div>
+                        <div class="left__profile">
+                            <div class="left__image"><img th:src="@{/markup/admin/images/olala.png}" alt=""></div>
+                             <p th:text="${#authentication.getPrincipal().users.fullName}" class="left__name">Anh Duc</p>
+                        </div>
+                        <ul class="left__menu">
+                            <li class="left__menuItem">
+                                <a th:href="@{/admin/dashboard}" class="left__title"><img th:src="@{/markup/admin/assets/icon-dashboard.svg}" alt="">Dashboard</a>
+                            </li>
+                            
+                            
+                            <li class="left__menuItem">
+                                <div class="left__title"><img th:src="@{/markup/admin/assets/icon-tag.svg}" alt="">Dòng Sản Phẩm<img class="left__iconDown" th:src="@{/markup/admin/assets/arrow-down.svg}" alt=""></div>
+                                <div class="left__text">
+                                    <a class="left__link" th:href="@{/admin/productLine/add}">Thêm dòng sản phẩm</a>
+       								<a class="left__link" th:href="@{/admin/productLine/view}">Xem dòng sản phẩm</a>                
+                                </div>
+                            </li>
+                                         
+                            
+                            <li class="left__menuItem">
+                                <div class="left__title"><img th:src="@{/markup/admin/assets/icon-edit.svg}" alt="">Nhãn hiệu<img class="left__iconDown" th:src="@{/markup/admin/assets/arrow-down.svg}" alt=""></div>
+                                <div class="left__text">
+                                    <a class="left__link" th:href="@{/admin/brand/add}">Thêm nhãn hiệu</a>
+                                    <a class="left__link" th:href="@{/admin/brand/view}">Xem nhãn hiệu</a>
+                                </div>
+                            </li>
+                                        
+                            <li class="left__menuItem">
+                                <div class="left__title"><img th:src="@{/markup/admin/assets/icon-book.svg}" alt="">Danh mục<img class="left__iconDown" th:src="@{/markup/admin/assets/arrow-down.svg}" alt=""></div>
+                                <div class="left__text">
+                                    <a class="left__link"  th:href="@{/admin/category/add}">Thêm danh mục</a>
+                                    <a class="left__link"   th:href="@{/admin/category/view}">Xem danh mục</a>
+                                </div>
+                            </li>
+
+                            <li class="left__menuItem">
+                                <a th:href="@{/employee/handleOrder}" class="left__title"><img th:src="@{/markup/admin/assets/icon-book.svg}" alt="">Đơn Đặt Hàng</a>
+                            </li>
+                
+                            <li class="left__menuItem">
+                                <div class="left__title"><img th:src="@{/markup/admin/assets/icon-user.svg}" alt="">Nhân viên<img class="left__iconDown" th:src="@{/markup/admin/assets/arrow-down.svg}" alt=""></div>
+                                <div class="left__text">
+                                   <a href="/admin/employee/add" class="left__link" >Thêm user</a>
+                                    <a href="/admin/employee/view" class="left__link" >Xem user</a>
+                                </div>
+                            </li>
+                            <li class="left__menuItem">
+                                <a href="/logout" class="left__title"><img th:src="@{/markup/admin/assets/icon-logout.svg}" alt="">Đăng Xuất</a>
+                            </li>
+                        </ul>
+                    </div>
+	</th:block>
+</div>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>OLALA Shops</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Colo Shop Template">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/styles/bootstrap4/bootstrap.min.css}">
+<link th:href="@{/markup/ptitshop/plugins/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.carousel.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.theme.default.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/animate.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/jquery-ui-1.12.1.custom/jquery-ui.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/styles/categories_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/styles/categories_responsive.css}">
+</head>
+
+<body>
+
+<div class="super_container">
+
+	<!-- Header -->
+	<th:block th:replace="~{share/shop_header::shop_header(cartItem=${session.cartItem})}"></th:block>
+	<!-- End Header -->
+
+	<div class="container product_section_container">
+		<div class="row">
+			<div class="col product_section clearfix">
+
+				<!-- Breadcrumbs -->
+
+				<div class="breadcrumbs d-flex flex-row align-items-center" style="margin-bottom: 20px; margin-top: 20px;">
+					<ul>
+						<li><a th:href="@{/}">Danh mục</a></li>
+						<li class="active"><i class="fa fa-angle-right" aria-hidden="true"></i>
+						<a th:text="${parentCategoryName}" th:href="@{#}"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+					</ul>
+				</div>
+
+
+
+				<!-- Sidebar -->
+
+				<div class="sidebar">
+					<div class="sidebar_section">
+						<div class="sidebar_title">
+							<h5>Danh mục</h5>
+							<h6 th:text="${parentCategoryName}" style="color: #b9b4c7"></h6>
+						</div>
+						
+						<!-- parentCategoryId -->
+						<input type="hidden" id="parentCategoryId" th:value="${parentCategoryId}"  />
+						
+						<ul class="sidebar_categories">
+							<th:block th:each="category : ${categories}">
+								<li> <input type="checkbox" th:value="${category.id}"/> <a th:text="${category.name}"></a> </li>
+							</th:block>
+						</ul>
+					</div>
+
+					<!-- Price Range Filtering -->
+					<div class="sidebar_section">
+						<div class="sidebar_title">
+							<h5>Khoảng giá</h5>
+						</div>
+						<p>
+							<label>Từ </label>
+							<input type="text" id="minPrice">
+							
+							<label>Đến </label>
+							<input type="text" id="maxPrice">
+						</p>
+						<div id="filter-btn"><span class="search-by-price-btn" style="display: block;color: #fff;
+						background-color: #fe4c50;text-align: center;padding: 8px; cursor: pointer;">Áp dụng</span></div>
+					</div>
+
+					
+
+				</div>
+
+				<!-- Main Content -->
+
+				<div class="main_content">
+
+					<!-- Products -->
+
+					<div class="products_iso">
+						<div class="row">
+							<div class="col">
+
+								<!-- Product Sorting -->
+								<div class="product_sorting_container product_sorting_container_top" style="display: flex;">
+										<div class="btn-group" data-toggle="buttons">
+															<label class="btn active lable-sort-type">
+																<input type="radio" name="orderBy" class="orderBy" value="bestseller" checked="checked">
+																<span class="glyphicon glyphicon-ok">Bán Chạy</span>
+															</label>
+												
+															<label class="btn lable-sort-type">
+																<input type="radio" name="orderBy" class="orderBy" value="newest">
+																<span class="glyphicon glyphicon-ok">Mới nhất</span>
+															</label>
+												
+															<label class="btn lable-sort-type">
+																<input type="radio" name="orderBy" class="orderBy" value="priceLowToHigh">
+																<span class="glyphicon glyphicon-ok">Giá từ thấp đến cao</span>
+															</label>
+															
+															<label class="btn lable-sort-type">
+																<input type="radio" name="orderBy" class="orderBy" value="priceHighToLow">
+																<span class="glyphicon glyphicon-ok">Giá cao đến thấp</span>			
+															</label>
+											</div>	
+											
+											<div class="search-by-name-container" style="margin-left: 5px;">
+															<span class="glyphicon glyphicon-ok" style="display: inline-block; margin-top: 9px;">Tìm theo tên</span>
+																<input type="text" name="keyword" id="keyword" style="padding-left: 10px;">
+																<button id="product-line-search" class="btn btn btn-dark" style="font-size: 14px; padding: 3px 10px;">
+																<i class="fa fa-search" aria-hidden="true"></i></button>
+											</div>		
+								</div>
+
+								<!-- <div class="product_sorting_container product_sorting_container_top">
+									<input type="radio" name="orderBy" class="orderBy" value="bestseller" checked="checked">
+									<label>Bán Chạy</label>
+								
+									<input type="radio" name="orderBy" class="orderBy" value="newest">
+									<label>Mới nhất</label>
+									
+									<input type="radio" name="orderBy" class="orderBy" value="priceLowToHigh">
+									<label>Giá từ thấp đến cao</label>
+									
+									<input type="radio" name="orderBy" class="orderBy" value="priceHighToLow">
+									<label>Giá cao đến thấp</label>
+									
+									<label>Tìm theo tên</label>
+									<input type="text" name="keyword" id="keyword">
+									<button id="product-line-search">Tìm kiếm</button>
+									
+								</div> -->
+
+								<!-- Product Grid -->
+
+								<div class="product-grid">
+
+									<!-- Product List -->
+								
+									<th:block th:each="e : ${pageData.content}">
+
+									<div class="product-item men">
+										<div class="product discount product_filter">
+											<div class="product_image">
+												<img th:src="@{${e.imgUrl1}}"  alt="">
+											</div>
+											<div class="favorite favorite_left"></div>
+											<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
+											<div class="product_info">
+												<h6 class="product_name"><a th:href="@{/product/view-by-product-line(productLineId=${e.id})}"
+												 th:text="${e.name}"></a></h6>
+												
+												<!-- MIN MAX PRICE  -->
+												<div class="product_price" th:text="@{${e.minPrice}+'đ - '+${e.maxPrice}}+'đ'">MIN-MAX PRICE<span>$590.00</span></div>
+												
+												<!-- SOLD -->
+												<span>Đã bán: </span> 
+												<span th:text="${e.totalSold}"></span>
+												
+												
+											</div>
+										</div>
+										<div class="red_button add_to_cart_button"><a th:href="@{/visitor/product/view-by-product-line(productLineId=${e.id})}"/>add to cart</a></div>
+									</div>
+									
+									</th:block>
+									
+									
+								</div>
+
+								<!-- Product Sorting -->
+
+								<div id="parent-paging-block">
+									<div id="paging-block"></div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<th:block th:replace="~{share/shop_footer::shop_footer}"></th:block>
+	<!-- End Footer -->
+
+	
+
+</div>
+	<script th:src="@{/markup/ptitshop/js/jquery-3.2.1.min.js}"></script>
+	<script th:src="@{/markup/ptitshop/styles/bootstrap4/popper.js}"></script>
+	<script th:src="@{/markup/ptitshop/styles/bootstrap4/bootstrap.min.js}"></script>
+	<script th:src="@{/markup/ptitshop/plugins/Isotope/isotope.pkgd.min.js}"></script>
+	<script th:src="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.carousel.js}"></script>
+	<script th:src="@{/markup/ptitshop/plugins/easing/easing.js}"></script>
+	<script th:src="@{/markup/ptitshop/plugins/jquery-ui-1.12.1.custom/jquery-ui.js}"></script>
+	<!-- <script th:src="@{/markup/ptitshop/js/categories_custom.js}"></script>  -->
+	<script th:src="@{/markup/ptitshop/plugins/twbsPagination/jquery.twbsPagination.js}"></script>
+	
+	<!-- category -->
+	<script th:src="@{/markup/ptitshop/js/categories3.js}"></script>
+</body>
+
+</html>

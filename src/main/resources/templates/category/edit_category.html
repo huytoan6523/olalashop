@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sửa thể loại</title>
+    
+    	<!-- CSS -->
+   	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">	
+    <link rel="stylesheet" th:href="@{/markup/admin/css/main.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    
+    
+    <script th:src="@{/markup/admin/js/jquery-3.6.0.js}"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="dashboard">
+                     
+            <!--  left MENU -->
+      		<th:block th:replace="~{share/admin_left_menu::admin}"></th:block>
+                
+                <div class="right">
+                    <div class="right__content">
+                        <div class="right__title">Bảng điều khiển</div>
+                        <p class="right__desc">Sửa danh mục</p>
+                        
+                        
+                        <div class="right__formWrapper">
+                            <form id="add-category-form" 
+                            style="margin: 0px; 
+                            max-width: 100%";
+                            th:action="@{/admin/category/edit}" method="post" th:object="${category}">
+                            
+                            	<!-- id -->
+                            	<input th:field="*{id}" type="hidden">
+                            	
+                                <div class="right__inputWrapper">
+                                    <label for="title" >Tên danh mục</label>
+                                    <input th:field="*{name}" type="text" placeholder="Danh mục">
+                                    
+                                    <!-- show Error -->
+                                     <ul>
+									<li th:each="err : ${#fields.errors('name')}" th:text="${err}"
+										class="error" />
+									</ul>
+									
+									<lable class="error fail-alert" th:text="${msg}"></label>
+                                </div>
+                                
+                              <!--  categorys  -->
+								<div class="right__inputWrapper">
+									<label>Thêm danh mục con</label>
+									<table id="record-table">
+										<thead>
+											<th>STT</th>
+											<th>Tên</th>
+											<th>Mô tả</th>
+											
+												<th>
+									               <button  class="right__iconTable bg-transparent plus-record-btn" type="button">
+									                <img src="/markup/admin/assets/plus.svg" class="bg-green" alt="" style="margin-left: 0">
+													</button>
+													</th>
+																	                    
+										</thead>
+										<tbody>
+											
+									          <tr th:each="category, itemStat : *{categories}">
+									          		<td class="record-order" th:text="${itemStat.index}"></td>
+								                    <td><input th:field="*{categories[__${itemStat.index}__].name}" /></td>
+								                    <td><input th:field="*{categories[__${itemStat.index}__].description}"/></td>
+								                    <td colspan="2"><input type="hidden" th:field="*{categories[__${itemStat.index}__].id}"></td>
+								                </tr>
+										</tbody>
+
+									</table>
+								</div>
+                               	
+                                
+                                <div class="right__inputWrapper">
+                                    <label for="desc">Mô tả</label>
+                                    <textarea th:field="*{description}" cols="30" rows="10" placeholder="Mô tả"></textarea>
+                                </div>
+                                
+                                
+                                <button class="btn" type="submit">Sửa</button>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+	<script th:src="@{/markup/admin/js/main.js}"></script>
+	<script th:src="@{/markup/admin/js/validate/jquery.validate.min.js}"></script>
+    <script th:src="@{/markup/admin/js/category/category_validate.js}"></script>
+     <script th:src="@{/markup/admin/js/category/add_category.js}"></script>
+    
+</body>
+</html>

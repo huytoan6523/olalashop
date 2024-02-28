@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">	
+    <link rel="stylesheet" th:href="@{/markup/admin/css/main.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/> 
+    
+    <!--  JS  -->
+    <script th:src="@{/markup/admin/js/jquery-3.6.0.js}"></script>
+	<script th:src="@{/markup/admin/js/jquery.twbsPagination.js}"></script>
+	
+	
+	<style type="text/css">
+		.modal-content{
+			margin-top: 50%;
+			min-width: 800px;
+		
+		}
+		
+		.m-l{
+			display: flex;
+			align-items: flex-end;
+		}
+		
+		.header-detail-order{
+			font-size: 18px;
+			font-weight: 500;
+		}
+	
+	</style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="dashboard">
+                     
+            <!--  left MENU -->
+      		<th:block th:replace="~{share/employee_left_menu::employee}"></th:block>
+                
+                 <div class="right">
+                    <div class="right__content">
+                        <div class="right__title">Bảng điều khiển</div>
+                        <p class="right__desc">Dashboard</p>
+			                <div class="right__formWrapper">
+			                 <form th:action="@{/admin/dashboard}" method="get" id="search-form"
+											th:object="${statInfo}">
+												<div class="search-form-input">
+												<label>Tên sản phẩm</label>
+												<input placeholder="Tên sản phẩm" type="text" th:field="*{productName}" style="width: 200px; border: 1px solid black;"> 
+												</div>
+												
+												<div class="search-form-input">
+												<label for="">Sắp xếp</label>
+												<select th:field="*{sortType}" class="sort-option">
+													<option th:value="bestSeller" >Bán chạy nhất</option>
+													<option th:value="bestIncome" >Doanh thu cao nhất</option>
+												</select> 
+												</div>
+												
+												<div class="search-form-input">
+												<label for="">Từ</label>
+												<input type="date" id="from-date" th:field="*{fromDate}">
+												</div>
+												
+												<div class="search-form-input">
+												<label for="">Đến</label>
+												<input type="date" id="to-date" th:field="*{toDate}">
+												</div>	
+			                        </form>
+			                 <!--  bảng kết quả  -->
+                       
+                        <p class="error-msg"></p>
+							<div class="result-label">Kết quả: </div>
+						
+						
+												
+							<div class="loader"></div>
+							<div class="no-result"></div>
+							
+			                        
+			               <table id="data-table">
+								<tbody>
+								</tbody>
+							</table>
+			                 
+			                
+			                <div id="parent-paging-block">
+								<div id="paging-block"></div>
+							</div>
+			                 
+			                 
+		                 </div>  
+		               </div>
+	                </div>
+                
+               </div> 
+            </div>
+        </div>
+
+    </div>
+</body>
+	<script th:src="@{/markup/ptitshop/styles/bootstrap4/popper.js}"></script>
+	<script th:src="@{/markup/ptitshop/styles/bootstrap4/bootstrap.min.js}"></script>
+	<script th:src="@{/markup/ptitshop/plugins/Isotope/isotope.pkgd.min.js}"></script>
+	<script th:src="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.carousel.js}"></script>
+	<script th:src="@{/markup/ptitshop/plugins/easing/easing.js}"></script>
+	<script th:src="@{/markup/ptitshop/plugins/jquery-ui-1.12.1.custom/jquery-ui.js}"></script>
+	<script th:src="@{/markup/admin/js/main.js}"></script>
+	<script th:src="@{/markup/admin/js/dashboard.js}"></script>   
+</html>

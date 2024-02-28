@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thêm sản phẩm</title>
+
+<!-- CSS -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" th:href="@{/markup/admin/css/main.css}">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+
+<script th:src="@{/markup/admin/js/jquery-3.6.0.js}"></script>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<div class="dashboard">
+
+				<!--  left MENU -->
+				<th:block th:replace="~{share/admin_left_menu::admin}"></th:block>
+
+				<div class="right">
+					<div class="right__content">
+						<div class="right__title">Bảng điều khiển</div>
+						<p class="right__desc">Thêm sản phẩm</p>
+
+
+						<div class="right__formWrapper">
+							<form id="add-product-form" th:action="@{/admin/product/add}"
+								method="post" th:object="${product}"
+								>
+								
+								<input th:field="*{productLineId}" type="hidden">
+								
+								<!-- name -->
+								<div class="right__inputWrapper">
+									<label for="name">Tên dòng sản phẩm</label> 
+									<span style="display: inline-block;" for="name"th:text="${productLine.name}">Tên sản phẩm</span>
+								</div>
+
+								<!--  price -->
+								<div class="right__inputWrapper">
+									<label for="title">Giá</label> 
+									<input th:field="*{price}" type="text" placeholder="Price">
+
+									<!--  show Error -->
+									<ul>
+										<li th:each="err : ${#fields.errors('price')}"
+											th:text="${err}" class="error" />
+									</ul>
+
+								</div>
+
+								<!--  stock -->
+								<div class="right__inputWrapper">
+									<label for="title">Số lượng trong kho</label> 
+									<input th:field="*{stock}" type="text" placeholder="Stock">
+
+								<!--  	show Error -->
+									<ul>
+										<li th:each="err : ${#fields.errors('stock')}"
+											th:text="${err}" class="error" />
+									</ul>
+
+								</div>
+								
+								<!--  attribute -->
+								
+						
+								 <div th:each="productAttribute, itemStat : *{productAttributes}">	
+								 	
+								 	<div class="right__inputWrapper">
+								 		<input th:field="*{productAttributes[__${itemStat.index}__].attribute}" type="hidden" />
+								 		<label th:text="*{productAttributes[__${itemStat.index}__].attribute.name}" />
+										<input th:field="*{productAttributes[__${itemStat.index}__].value}" />
+									</div>
+								 
+			                           
+								 </div>
+								
+								
+								
+								
+								<button class="btn" type="submit">Thêm</button>
+							</form>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script th:src="@{/markup/admin/js/main.js}"></script>
+	<script th:src="@{/markup/admin/js/validate/jquery.validate.min.js}"></script>
+	<script th:src="@{/markup/admin/js/product/product_validate.js}"></script>
+	<!-- <script th:src="@{/markup/admin/js/product/add_product.js}"></script>
+ -->
+</body>
+</html>

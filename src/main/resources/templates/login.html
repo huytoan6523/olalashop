@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{markup/login/fonts/icomoon/style.css}">
+
+ <!--    <link rel="stylesheet" th:href="@{markup/login/css/owl.carousel.min.css}"> -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{markup/login/css/bootstrap.min.css}">
+    
+    <!-- Style -->
+    <link rel="stylesheet" th:href="@{markup/login/css/style.css}">
+
+    <title>Đăng nhập</title>
+    
+    
+   <style type="text/css">
+		ul {
+			list-style-type: none;
+			padding: 0px;
+		};
+		li{
+			color: red;
+			padding-top: 5px;
+		}
+		
+		input {
+			border: 1px solid #ccc !important;
+	    	padding-left: 10px !important;
+	    	background-color: none !important;
+	    }
+	    
+		input:-webkit-autofill,
+		input:-webkit-autofill:focus {
+		    transition: background-color 600000s 0s, color 600000s 0s;
+		}
+		input[data-autocompleted] {
+		    background-color: transparent !important;
+		}
+	</style>
+	
+  </head>
+  <body>
+  
+
+  
+  <div class="content">
+    <div class="container">
+      <div class="row justify-content-center">
+       
+        <div class="col-md-6 contents">
+          <div class="row justify-content-center">
+            <div class="col-md-12">
+              <div class="form-block">
+                  <div>
+                  <h3><strong>OLALA SHOP</strong></h3>
+                </div>
+                <form action="" method="post">
+                  <div class=" first">
+                    <label for="username">Tài khoản</label>
+                    <input type="text" class="form-control" id="username" name="phoneNumber">
+                    <label th:text="${msg}"></label>
+                  </div>
+                  <div class=" last mb-4">
+                    <label for="password">Mật khẩu</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                  </div>     
+                  <div class="d-flex mb-5 align-items-center">
+                    <label class="control control--checkbox mb-0"><span class="caption">Nhớ mật khẩu</span>
+                      <input type="checkbox" checked="checked"/>
+                      <div class="control__indicator"></div>
+                    </label>
+                    <span class="ml-auto"><a th:href="@{/register}" style="text-decoration: none";
+                    class="forgot-pass">Đăng ký</a></span> 
+                  </div>
+                  
+                   
+
+                  <input type="submit" value="Đăng nhập" class="btn btn-pill text-white btn-block btn-primary">
+
+                  
+             
+                </form>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  </body>
+</html>

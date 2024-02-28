@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">	
+    <link rel="stylesheet" th:href="@{/markup/admin/css/main.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    
+    <!--  JS  -->
+    <script th:src="@{/markup/admin/js/jquery-3.6.0.js}"></script>
+	<script th:src="@{/markup/admin/js/jquery.twbsPagination.js}"></script>
+    
+    <script>
+    	var LOAD_DATA_URL = "/admin/productLine/view";
+    </script>
+
+    
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="dashboard">
+                     
+            <!--  left MENU -->
+      		<th:block th:replace="~{share/admin_left_menu::admin}"></th:block>
+      		
+
+                <div class="right">
+                    <div class="right__content">
+                        <div class="right__title">Bảng điều khiển</div>
+                        <p class="right__desc">Xem sản phẩm</p>
+                        
+                         <div class="right__formWrapper">
+                        
+                        <div class="add-btn-container">
+                        	<a class="add-link" th:href="@{/admin/productLine/product/add/{id}(id=${productLine.id})}">Thêm</a>
+                        </div>
+
+                        <!--  bảng kết quả  -->
+                       
+                        <p class="error-msg"></p>
+							<div class="result-label">Result: </div>
+							
+							<table id="data-table">
+								<thead>
+									<tr>
+										<td>ID</td>
+										<td>Tên dòng sản phẩm</td>
+										
+										<!-- Attriibute -->
+										<th:block th:each="attribute : ${productLine.attributes}">
+										     <td th:text="${attribute.name}"></td>
+										</th:block>
+										
+										<td>Giá</td>
+										<td>Số lượng trong kho</td>
+										<td colspan="2">Action</td>
+									</tr>
+								
+								</thead>
+								
+								<tbody>
+									 <th:block th:each="product : ${products}">
+									 	<tr>
+									 		 <td th:text="${product.id}"></td>
+										     <td th:text="${productLine.name}"></td>
+										     
+										     <th:block th:each="productAttribute : ${product.productAttributes}">
+										     <td th:text="${productAttribute.value}"></td>
+											 </th:block>
+										     <td th:text="${product.price}"></td>
+									 		 <td th:text="${product.stock}"></td>
+									 		 
+									 		 <td data-label="Sửa" class="right__iconTable"><a th:href="@{/admin/product/edit/{id}(id=${product.id})}">
+											<img src="/markup/admin/assets/icon-edit.svg" alt=""></a></td>
+											
+								            <td data-label="Xoá" class="right__iconTable"><a class="delete-link" th:href="@{/admin/product/delete/{id}(id=${product.id})}">
+								            <img src="/markup/admin/assets/icon-trash-black.svg" alt=""></a></td>
+									 	
+									 	</tr>
+										     
+									</th:block>
+								
+								
+								</tbody>
+								
+							</table>
+							
+							
+                        
+                       </div>  
+                    </div>
+                    
+                    
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+   <!--  <script th:src="@{/markup/admin/js/productLine/view_product.js}"></script> -->
+    <script th:src="@{/markup/admin/js/main.js}"></script>
+</body>
+</html>

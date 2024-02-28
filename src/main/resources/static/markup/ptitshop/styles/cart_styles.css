@@ -1,0 +1,144 @@
+/*Common*/
+ input[type="checkbox"] {
+	accent-color: #ee4d2d;
+}
+
+.total_product_price {
+	display: inline-block;
+    font-size: 15px;
+    color: #fe4c50;
+    font-weight: 500;
+    line-height: 30px;
+    margin-top: 2px;
+}
+
+/* Header */
+
+
+
+/*---- End Header */
+
+/* Content */
+
+.cart-title{
+	font-size: 25px;
+    padding: 20px 15px;
+}
+
+.cart-img{
+	height: 40px;
+}
+
+.cart-description {
+	
+	display: flex !important;
+    align-items: center ;
+    width: 45%;
+}
+
+/* check box */
+.cart-checkbox{
+	margin-right: 16px;
+}
+.checkmark{
+	height: 20px;
+    width: 20px;
+}
+
+
+/* item */
+.item-name{
+	font-size: 16px;
+}
+
+.remove-item-link{
+	font-size: 25px;
+}
+
+.remove-item-link :hover{
+	cursor: pointer;
+	opacity: 0.8;
+}
+
+.price{
+	display: flex;
+	align-items: center;
+}
+.original_price{
+	margin: 4px 10px 0 0;
+}
+.product_price{
+	 font-size: 15px;
+}
+
+.empty-cart{
+	text-align: center;
+    width: 100%;
+    font-size: 30px;
+    padding: 20px;
+    font-weight: 500;
+}
+
+
+/* button */
+.icon-minus , .icon-plus {
+	border: solid 1px #e8e8e8;
+    padding: 0px 10px;
+}
+ .quantity-value{
+	border: solid 1px #e8e8e8;
+    padding: 0px 10px;
+    margin: 0 !important;
+    width: 40px;
+    text-align: center;
+}
+
+.icon-minus , .icon-plus:hover {
+	cursor: pointer;
+}
+
+/* Footer */
+.footer{
+	padding: 40px;
+	background-color: #fff;
+	z-index: 2;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.checkout-container {
+	
+	display: flex;
+	align-content: center;
+	justify-content: space-between;
+}
+
+.checkout-container span{
+	font-size: 18px;
+}
+
+.checkout-btn{
+	background-color: #e44b2e;
+	color: #fff;
+	padding: 13px 36px;
+	margin-left: 10px;
+    text-transform: capitalize;
+    font-weight: 300;
+    height: 2.5rem;
+    box-sizing: border-box;
+    font-size: .875rem;
+    border-radius: 2px;
+    width: 13.125rem;
+    border: none;
+    vertical-align: middle;
+}
+
+.checkout-btn a {
+	font-size: 18px;
+}
+

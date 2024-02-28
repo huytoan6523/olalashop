@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<head>
+<title>OLALA Shop</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/styles/bootstrap4/bootstrap.min.css}">
+<link th:href="@{/markup/ptitshop/plugins/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.carousel.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.theme.default.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/animate.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/jquery-ui-1.12.1.custom/jquery-ui.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/styles/main_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/styles/main_responsive.css}">
+
+
+<style type="text/css">
+	.product-grid{
+	display: flex;  
+    flex-wrap: wrap;
+    
+	}
+	
+	.products_iso{
+		margin-top: 33px;
+	}
+
+
+	#parent-paging-block{
+		margin-top: 20px;
+	}
+	
+	
+	.discount-product_price{
+	font-size: 12px;
+	font-weight: 600;
+	margin-left: 10px;
+	color: #b5aec4;
+	text-decoration: line-through;
+	}
+
+	.page-item {
+		color: #fe4c50 !important;
+	}
+	#paging-block{
+		display: flex;
+		justify-content: center;
+	}
+	.page-item.active .page-link{
+		background-color: #ee4d2d;
+	}
+	
+	.arrivals_grid_sorting{
+		display: flex;  
+    	flex-wrap: wrap;
+	}
+
+
+</style>
+</head>
+
+<body>
+
+<div class="super_container">
+
+	<!-- Header -->
+	<th:block th:replace="~{share/shop_header::shop_header}"></th:block>
+	<!-- End Header -->
+
+	<!-- Slider -->
+
+	<div class="main_slider" style="background-image:url(/images/productline/slide/slider_1.jpg)">
+		<div class="container fill_height">
+			<div class="row align-items-center fill_height">
+				<div class="col">
+					<div class="main_slider_content">
+						<h6>POLY / CAO ĐẲNG FPT POLYTECHNIC</h6>
+						<h1>SALE TỚI 30% TẾT GIÁP THÌN</h1>
+						<div class="red_button shop_now_button"><a href="#best_sellers">Mua ngay</a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Banner -->
+
+	<div class="banner">
+		<div class="container">
+			<div class="row">
+			
+			
+				<div class="col text-center">
+					<div class="section_title">
+						<h2>DANH MỤC SẢN PHẨM</h2>
+					</div>
+					
+					<div class="row align-items-center">
+						<div class="col text-center">
+							<div class="new_arrivals_sorting">
+								<ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
+									<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">Tất cả</li>
+								<th:block th:each="parentCategory : ${parentCategories}">
+									<li 
+									class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center"
+									><a th:text="${parentCategory.name}" 
+									style="color: #1e1e27";
+									th:href="@{/visitor/product/view-by-parent-category(parentCategoryId=${parentCategory.id})}">
+									</a></li>
+								</th:block>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				
+			</div>
+		</div>
+	</div>
+
+	
+	<!-- Best Sellers -->
+
+	<div id ="best_sellers" class="best_sellers">
+		<div class="container">
+			<div class="row">
+				<div class="col text-center">
+					<div class="section_title new_arrivals_title">
+						<h2>SẢN PHẨM BÁN CHẠY</h2>
+					</div>
+				</div>
+			</div>
+			
+			<div class="products_iso">
+			<div class="row">
+				<div class="col">
+						<!-- Product Grid -->
+
+								<div class="product-grid" style="margin-top: 20px">
+
+									<!-- Product List -->
+								
+									<th:block th:each="e : ${pageData.content}">
+
+									<div class="product-item men">
+										<div class="product discount product_filter">
+											<div class="product_image">
+												<img th:src="@{${e.imgUrl1}}"  alt="">
+											</div>
+											<div class="favorite favorite_left"></div>
+											<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
+											<div class="product_info">
+												<h6 class="product_name"><a th:href="@{/product/view-by-product-line(productLineId=${e.id})}"
+												 th:text="${e.name}"></a></h6>
+												
+												<!-- MIN MAX PRICE  -->
+												<div class="product_price" th:text="@{${e.minPrice}+'đ - '+${e.maxPrice}}+'đ'">MIN-MAX PRICE<span>$590.00</span></div>
+												
+												<!-- SOLD -->
+												<span>Đã bán: </span> 
+												<span th:text="${e.totalSold}"></span>
+												
+												
+											</div>
+										</div>
+										<div class="red_button add_to_cart_button"><a th:href="@{/visitor/product/view-by-product-line(productLineId=${e.id})}"/>add to cart</a></div>
+									</div>
+									
+									</th:block>
+									
+									
+								</div>
+
+								<!-- Product Sorting -->
+
+								<div id="parent-paging-block">
+									<div id="paging-block"></div>
+								</div>	
+						
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Footer -->
+	<th:block th:replace="~{share/shop_footer::shop_footer}"></th:block>
+	<!-- End Footer -->
+
+	</div>
+</body>
+
+	<script th:src="@{/markup/ptitshop/js/jquery-3.2.1.min.js}"></script>
+	<script th:src="@{/markup/ptitshop/styles/bootstrap4/popper.js}"></script>
+	<script th:src="@{/markup/ptitshop/styles/bootstrap4/bootstrap.min.js}"></script>
+	<script th:src="@{/markup/ptitshop/plugins/Isotope/isotope.pkgd.min.js}"></script>
+	<script th:src="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.carousel.js}"></script>
+	<script th:src="@{/markup/ptitshop/plugins/easing/easing.js}"></script>
+	<script th:src="@{/markup/ptitshop/plugins/jquery-ui-1.12.1.custom/jquery-ui.js}"></script>
+	<!-- <script th:src="@{/markup/ptitshop/js/categories_custom.js}"></script>  -->
+	<script th:src="@{/markup/ptitshop/plugins/twbsPagination/jquery.twbsPagination.js}"></script>
+	
+	
+	<!-- category -->
+	<script th:src="@{/markup/ptitshop/js/homepage3.js}"></script>
+</html>

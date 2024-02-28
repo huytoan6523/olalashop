@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>OLALA Shop</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Colo Shop Template">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/styles/bootstrap4/bootstrap.min.css}">
+<link th:href="@{/markup/ptitshop/plugins/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.carousel.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.theme.default.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/animate.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/jquery-ui-1.12.1.custom/jquery-ui.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/styles/categories_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/styles/categories_responsive.css}">
+
+<style type="text/css">
+	/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+</style>
+
+
+</head>
+
+<!-- for Slide -->
+
+
+<body>
+
+<div class="super_container">
+
+	<!-- Header -->
+	<th:block th:replace="~{share/shop_header::shop_header}"></th:block>
+	<!-- End Header -->
+	
+	<div class="container product_section_container">
+		<div class="row">
+			<div class="col product_section clearfix">
+
+				<!-- Sidebar -->
+
+				<div class="sidebar" style="padding-top: 40px;">
+					<div class="sidebar_section">
+						<div class="sidebar_title">
+							<h5>Danh mục</h5>
+						</div>
+						<ul class="sidebar_categories">
+							<th:block th:each="parentCategory : ${parentCategories}">
+								<li><a th:text="${parentCategory.name}" th:href="@{/visitor/product/view-by-parent-category(parentCategoryId=${parentCategory.id})}"></a></li>
+							</th:block>
+						</ul>
+					</div>
+
+					
+
+				</div>
+
+				<!-- Main Content -->
+
+				<div class="main_content">
+
+					<!-- Products -->
+
+					<div class="products_iso">
+						<div class="row">
+							<div class="col">
+							
+							<!-- Slide -->
+								
+							<div class="slideshow-container" style="margin-top: 40px;">
+									<div class="mySlides "> 
+									  <img src="/images/productLine/slide/slider1.png" style="width:100%" height="502px"> 
+									</div>
+									
+									<div class="mySlides ">		
+									<img src="/images/productLine/slide/slider2.jpg" style="width:100%" height="502px">
+									</div>
+									
+									<div class="mySlides ">  
+									  <img src="/images/productLine/slide/slider3.jpg" style="width:100%" height="502px">
+									</div>
+							</div>
+							<div style="text-align:center; position: resize; top: -40px;">
+							  <span class="dot" onclick="currentSlide(1)"></span> 
+							  <span class="dot" onclick="currentSlide(2)"></span> 
+							  <span class="dot" onclick="currentSlide(3)"></span> 
+							</div>
+							
+							
+							<!-- End Slide -->
+								<!-- Product Sorting -->
+
+								<div class="product_sorting_container product_sorting_container_top" style="display: flex
+								; justify-content: space-between;">
+									<h4 style="color: #fe4c50">Mua nhiều</h4>
+									<div class="sort-type-container">
+										<div class="well well-sm text-center">
+												<div class="btn-group" data-toggle="buttons">
+													
+													<label class="btn active lable-sort-type">
+														<input type="radio" name="sort-type" class="sort-type"  autocomplete="off" checked value="week">
+														<span class="glyphicon glyphicon-ok">Tuần</span>
+													</label>
+										
+													<label class="btn lable-sort-type">
+														<input type="radio" name="sort-type" class="sort-type"  autocomplete="off" value="month">
+														<span class="glyphicon glyphicon-ok">Tháng</span>
+													</label>
+										
+													<label class="btn lable-sort-type">
+														<input type="radio" name="sort-type" class="sort-type" autocomplete="off" value="year">
+														<span class="glyphicon glyphicon-ok">Năm</span>
+													</label>
+												</div>
+										
+										
+											</div>
+									</div>
+								</div>
+
+								<!-- Product Grid -->
+
+								<div class="product-grid" style="margin-top: 20px">
+
+									<!-- Product List -->
+								
+									<th:block th:each="e : ${pageData.content}">
+
+									<div class="product-item men">
+										<div class="product discount product_filter">
+											<div class="product_image">
+												<img th:src="@{${e.imgUrl1}}"  alt="">
+											</div>
+											<div class="favorite favorite_left"></div>
+											<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
+											<div class="product_info">
+												<h6 class="product_name"><a th:href="@{/product/view-by-product-line(productLineId=${e.id})}"
+												 th:text="${e.name}"></a></h6>
+												
+												<!-- MIN MAX PRICE  -->
+												<div class="product_price" th:text="@{${e.minPrice}+'đ - '+${e.maxPrice}}+'đ'">MIN-MAX PRICE<span>$590.00</span></div>
+												
+												<!-- SOLD -->
+												<span>Đã bán: </span> 
+												<span th:text="${e.totalSold}"></span>
+												
+												
+											</div>
+										</div>
+										<div class="red_button add_to_cart_button"><a th:href="@{/visitor/product/view-by-product-line(productLineId=${e.id})}"/>add to cart</a></div>
+									</div>
+									
+									</th:block>
+									
+									
+								</div>
+
+								<!-- Product Sorting -->
+
+								<div id="parent-paging-block">
+									<div id="paging-block"></div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Footer -->
+	<th:block th:replace="~{share/shop_footer::shop_footer}"></th:block>
+	<!-- End Footer -->
+	
+	
+</div>
+	<script th:src="@{/markup/ptitshop/js/jquery-3.2.1.min.js}"></script>
+	<script th:src="@{/markup/ptitshop/styles/bootstrap4/popper.js}"></script>
+	<script th:src="@{/markup/ptitshop/styles/bootstrap4/bootstrap.min.js}"></script>
+	<script th:src="@{/markup/ptitshop/plugins/Isotope/isotope.pkgd.min.js}"></script>
+	<script th:src="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.carousel.js}"></script>
+	<script th:src="@{/markup/ptitshop/plugins/easing/easing.js}"></script>
+	<script th:src="@{/markup/ptitshop/plugins/jquery-ui-1.12.1.custom/jquery-ui.js}"></script>
+	<!-- <script th:src="@{/markup/ptitshop/js/categories_custom.js}"></script>  -->
+	<script th:src="@{/markup/ptitshop/plugins/twbsPagination/jquery.twbsPagination.js}"></script>
+	
+	
+	<!-- Slider -->
+	<script>
+		let slideIndex = 0;
+		showSlides();
+	
+		function showSlides() {
+		  let i;
+		  let slides = document.getElementsByClassName("mySlides");
+		  let dots = document.getElementsByClassName("dot");
+		  for (i = 0; i < slides.length; i++) {
+		    slides[i].style.display = "none";  
+		  }
+		  slideIndex++;
+		  if (slideIndex > slides.length) {slideIndex = 1}    
+		  for (i = 0; i < dots.length; i++) {
+		    dots[i].className = dots[i].className.replace(" active", "");
+		  }
+		  slides[slideIndex-1].style.display = "block";  
+		  dots[slideIndex-1].className += " active";
+		  setTimeout(showSlides, 5000); // Change image every 2 seconds
+		}
+	</script>
+	
+	<!-- category -->
+	<script th:src="@{/markup/ptitshop/js/homepage3.js}"></script>
+	
+</body>
+
+</html>

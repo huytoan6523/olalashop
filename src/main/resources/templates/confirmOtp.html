@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Xác nhận số điện thoại!</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Colo Shop Template">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/markup/ptitshop/styles/bootstrap4/bootstrap.min.css}">
+<link
+	th:href="@{/markup/ptitshop/plugins/font-awesome-4.7.0/css/font-awesome.min.css}"
+	rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.carousel.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.theme.default.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/animate.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/markup/ptitshop/plugins/jquery-ui-1.12.1.custom/jquery-ui.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/markup/ptitshop/styles/categories_styles.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/markup/ptitshop/styles/categories_responsive.css}">
+</head>
+<style>
+	.otp{
+		width: 56px;
+		padding-left: 17px;
+	    font-size: 18px;
+	    height: 38px;
+	    margin-right: 5px;
+	}
+
+
+</style>
+
+<body>
+
+	<div class="super_container">
+		<!-- Header -->
+		<th:block th:replace="~{share/shop_header::shop_header}"></th:block>
+		<!--  End Header -->
+		
+		<div class="container product_section_container">
+			<div class="bg-gray-100 h-screen" style="margin-top: 25%;">
+		        
+		        <div class="text-center">
+		        	
+				<form th:action="@{/register/confirmOtp}" method="post">
+					<input type="hidden" class="otp" name="otpId" th:value="${otpId}"/>
+					
+					<label style="font-size: 18px;">Nhập mã OTP:</label>
+					<input type="text" class="otp" name="otp_number1" style="height: 38px;"   onkeypress="return event.charCode >= 48 && event.charCode <= 57"  maxlength="1" />
+					<input type="text" class="otp" name="otp_number2" style="height: 38px;"   onkeypress="return event.charCode >= 48 && event.charCode <= 57"  maxlength="1"/>
+					<input type="text" class="otp" name="otp_number3" style="height: 38px;"   onkeypress="return event.charCode >= 48 && event.charCode <= 57"  maxlength="1"/>
+					<input type="text" class="otp" name="otp_number4" style="height: 38px;"   onkeypress="return event.charCode >= 48 && event.charCode <= 57"  maxlength="1"/>
+					
+					<input type="submit" value="Xác nhận" class="btn btn-primary" 
+					style="background-color: #4f46e5; 
+					border-radius: 0px;
+					margin-bottom: 5px;
+					margin-right: 5px;">
+					
+					<a type="submit" th:href="@{/register/resendOtp}" class="btn btn-primary" 
+					style="background-color: ##e0e0e0; 
+					border-radius: 0px;
+					margin-bottom: 5px;">Gửi lại</a>
+				</form>
+					        
+		    	<!-- Error -->
+		    	<p th:text=${msg}></p>     
+		        </div>
+		    </div>
+		  </div>
+		</div>
+
+
+	</div>
+	<script th:src="@{/markup/ptitshop/js/jquery-3.2.1.min.js}"></script>
+	<script th:src="@{/markup/ptitshop/styles/bootstrap4/popper.js}"></script>
+	<script th:src="@{/markup/ptitshop/styles/bootstrap4/bootstrap.min.js}"></script>
+	<script
+		th:src="@{/markup/ptitshop/plugins/Isotope/isotope.pkgd.min.js}"></script>
+	<script
+		th:src="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.carousel.js}"></script>
+	<script th:src="@{/markup/ptitshop/plugins/easing/easing.js}"></script>
+	<script
+		th:src="@{/markup/ptitshop/plugins/jquery-ui-1.12.1.custom/jquery-ui.js}"></script>
+	<script th:src="@{/markup/ptitshop/js/categories_custom.js}"></script>
+</body>
+
+</html>

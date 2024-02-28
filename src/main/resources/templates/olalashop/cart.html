@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Giỏ Hàng</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Colo Shop Template">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/styles/bootstrap4/bootstrap.min.css}">
+<link th:href="@{/markup/ptitshop/plugins/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.carousel.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.theme.default.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/animate.css}">
+<link rel="stylesheet" th:href="@{/markup/ptitshop/plugins/themify-icons/themify-icons.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/jquery-ui-1.12.1.custom/jquery-ui.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/styles/single_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/styles/cart_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/styles/single_responsive.css}">
+</head>
+
+<body>
+
+<div class="super_container">
+
+	<!-- Header -->
+	<th:block th:replace="~{share/shop_header::shop_header}"></th:block>
+	<!-- End Header -->
+
+	<div class="container single_product_container">
+		<!--  content -->
+		<div class="card">
+            <div class="row">
+            
+            	<!-- Header -->
+            	<div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-2 px-3 " style="width: 100%">
+            		
+            			<div class="cart-checkbox cart-title" style="padding-left: 16px; display: flex;"  >
+                     		<input type="checkbox" class="check-box-select-all checkmark" id ="select-all"/>
+                     		<div style="margin-left: 15px; font-size: 18px">Chọn tất cả</div>
+                     		
+                     	</div>
+                     	
+                    	
+                    	
+                    	<div class="count-product-item-lable">
+                    		<span style="font-size: 18px;">Tổng số sản phẩm: </span>
+                    		<span id="count-product-item-lable" style="padding-right: 16px; font-size: 18px">31</span>
+                    	</div>
+                     	
+                    </div>
+                    
+                <!-- Content -->
+               	<form id="checkout-form" th:action="@{/user/checkout/}" style="width: 100%;" method="post">
+                <div class="col-md-12 list-product-item">
+            	</div>
+        		</form>
+            
+        </div>
+                    
+                
+            </div>
+            
+        </div>
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="container checkout-container">
+			
+				<div class="cart-checkbox select-all-container" style="padding-left: 16px; display: flex;"  >
+                     		<input type="checkbox" class="check-box-select-all checkmark" id ="select-all2"/>
+                     		<div style="margin-left: 15px; font-size: 18px">Chọn tất cả</div>
+                     	</div>
+			
+				
+				<div class="total-selected-product-item-container">
+					<span>Tổng thanh toán: </span>
+					<span class="total-selected-product-item">0đ</span>
+					<span>(sản phẩm): </span>
+					<span class="total-price">0</span>
+					
+					<button class="red_button checkout-btn"><a style="font-size: 18px">Mua hàng</a></button>
+				</div>
+		</div>
+	</footer>
+
+</div>
+
+<script th:src="@{/markup/ptitshop/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/markup/ptitshop/styles/bootstrap4/popper.js}"></script>
+<script th:src="@{/markup/ptitshop/styles/bootstrap4/bootstrap.min.js}"></script>
+<script th:src="@{/markup/ptitshop/plugins/Isotope/isotope.pkgd.min.js}"></script>
+<script th:src="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.carousel.js}"></script>
+<script th:src="@{/markup/ptitshop/plugins/easing/easing.js}"></script>
+<script th:src="@{/markup/ptitshop/plugins/jquery-ui-1.12.1.custom/jquery-ui.js}"></script>
+
+<!-- handle request -->
+<script th:src="@{/markup/ptitshop/js/cart.js}"></script>
+</body>
+
+</html>

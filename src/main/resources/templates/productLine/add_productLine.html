@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thêm thể loại</title>
+
+<!-- CSS -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" th:href="@{/markup/admin/css/main.css}">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+
+<script th:src="@{/markup/admin/js/jquery-3.6.0.js}"></script>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<div class="dashboard">
+
+				<!--  left MENU -->
+				<th:block th:replace="~{share/admin_left_menu::admin}"></th:block>
+
+				<div class="right">
+					<div class="right__content">
+						<div class="right__title">Bảng điều khiển</div>
+						<p class="right__desc">Thêm dòng sản phẩm</p>
+
+
+						<div class="right__formWrapper">
+							<form id="add-productLine-form"
+								th:action="@{/admin/productLine/add}" method="post"
+								th:object="${productLine}" enctype="multipart/form-data">
+
+								<!-- name -->
+								<div class="right__inputWrapper">
+									<label for="title">Tên dòng sản phẩm</label> <input
+										th:field="*{name}" type="text" placeholder="Sản phẩm">
+
+									<!-- show Error -->
+									<ul>
+										<li th:each="err : ${#fields.errors('name')}" th:text="${err}"
+											class="error" />
+									</ul>
+
+									<lable class="error fail-alert" th:text="${msg}"> </label>
+								</div>
+
+								
+								<!-- 
+                                 price
+                                 <div class="right__inputWrapper">
+                                    <label for="title" >Giá</label>
+                                    <input th:field="*{price}" type="text" placeholder="Price">
+                                    
+                                    show Error
+                                     <ul>
+									<li th:each="err : ${#fields.errors('price')}" th:text="${err}"
+										class="error" />
+									</ul>
+									
+                                </div>
+                                
+
+                                stock
+                                 <div class="right__inputWrapper">
+                                    <label for="title" >Số lượng trong kho</label>
+                                    <input th:field="*{stock}" type="text" placeholder="Stock">
+                                    
+                                    show Error
+                                     <ul>
+									<li th:each="err : ${#fields.errors('stock')}" th:text="${err}"
+										class="error" />
+									</ul>
+									
+                                </div>
+                                 -->
+								<!-- category -->
+								<div class="right__inputWrapper">
+									<label>Danh mục</label> <select th:field="*{categoryId}">
+										<option value="">---</option>
+										<option th:each="category : ${listCategory}"
+											th:value="${category.id}" th:text="${category.name}"></option>
+									</select>
+								</div>
+
+								<!-- brand -->
+								<div class="right__inputWrapper">
+									<label>Nhãn hiệu</label> <select th:field="*{brandId}">
+										<option value="">---</option>
+										<option th:each="brand : ${listBrand}" th:value="${brand.id}"
+											th:text="${brand.name}"></option>
+									</select>
+								</div>
+
+								<!-- discount -->
+								 <div class="right__inputWrapper">
+                                    <label for="title" >Giảm giá(%)</label>
+                                    <input th:field="*{discount}" type="text" placeholder="Discount">
+                                    
+                                    
+                                     <ul>
+									<li th:each="err : ${#fields.errors('discount')}" th:text="${err}"
+										class="error" />
+									</ul>
+									
+                                </div>
+
+								<!--  attribute  -->
+								<div class="right__inputWrapper">
+									<label>Thêm thuộc tính</label>
+									<table id="record-table">
+										<thead>
+											<th>STT</th>
+											<th>Tên</th>
+											<th>Mô tả</th>
+											<th colspan="2"></th>
+										</thead>
+										<tbody>
+											
+									          <tr th:each="attribute, itemStat : *{attributes}">
+									          		
+									          		<td class="record-order" th:text="${itemStat.index}"></td>
+								                    <td><input th:field="*{attributes[__${itemStat.index}__].name}" /></td>
+								                    <td><input th:field="*{attributes[__${itemStat.index}__].description}"/></td>
+								                    
+								                    <td>
+								                     <button  class="right__iconTable bg-transparent plus-record-btn" type="button">
+								                      <img src="/markup/admin/assets/plus.svg" class="bg-green" alt="" style="margin-left: 0">
+								                    </button>
+								                    </td>
+								                    
+								                    <td>
+								                     <button class="right__iconTable bg-transparent minus-record-btn" type="button">
+								                      <img src="/markup/admin/assets/minus.svg" class="bg-green" alt="" style="margin-left: 0">
+								                    </button>
+								                    </td>
+								                   
+								                </tr>
+										               
+									          
+													
+							
+
+										</tbody>
+
+									</table>
+								</div>
+									
+
+								<!-- image -->
+								<div class="right__inputWrapper">
+									<label for="image">Hình ảnh 1</label> <input
+										th:field="*{imgFile1}" type="file"
+										accept="image/png, image/jpeg">
+								</div>
+								<img src="" id="prev1" />
+
+								<div class="right__inputWrapper">
+									<label for="image">Hình ảnh 2</label> <input
+										th:field="*{imgFile2}" type="file"
+										accept="image/png, image/jpeg, image/ipg">
+								</div>
+								<img src="" id="prev2" />
+								
+								<div class="right__inputWrapper">
+									<label for="image">Hình ảnh 3</label> <input
+										th:field="*{imgFile3}" type="file"
+										accept="image/png, image/jpeg, image/jpg">
+								</div>
+								<img src="" id="prev3" />
+
+
+								<div class="right__inputWrapper">
+									<label for="desc">Mô tả</label>
+									<textarea th:field="*{description}" cols="30" rows="10"
+										placeholder="Mô tả"></textarea>
+								</div>
+
+
+								<button class="btn" type="submit">Thêm</button>
+							</form>
+
+						</div>
+					</div>
+				</div>
+
+
+
+			</div>
+		</div>
+	</div>
+	<script th:src="@{/markup/admin/js/main.js}"></script>
+	<script th:src="@{/markup/admin/js/validate/jquery.validate.min.js}"></script>
+	<script th:src="@{/markup/admin/js/productLine/productLine_validate.js}"></script>
+	<script th:src="@{/markup/admin/js/productLine/add_productLine2.js}"></script>
+
+</body>
+</html>

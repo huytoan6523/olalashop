@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xử lý đơn hàng</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">	
+    <link rel="stylesheet" th:href="@{/markup/admin/css/main.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/> 
+    
+    <!--  JS  -->
+    <script th:src="@{/markup/admin/js/jquery-3.6.0.js}"></script>
+	<script th:src="@{/markup/admin/js/jquery.twbsPagination.js}"></script>
+	
+	
+	<style type="text/css">
+		.modal-content{
+			margin-top: 50%;
+			min-width: 800px;
+		
+		}
+		
+		.m-l{
+			display: flex;
+			align-items: flex-end;
+		}
+		
+		.header-detail-order{
+			font-size: 18px;
+			font-weight: 500;
+		}
+	
+	</style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="dashboard">
+                     
+            <!--  left MENU -->
+      		<th:block th:replace="~{share/employee_left_menu::employee}"></th:block>
+                
+                 <div class="right">
+                    <div class="right__content">
+                        <div class="right__title">Bảng điều khiển</div>
+                        <p class="right__desc">Xử lý đơn hàng</p>
+			                <div class="right__formWrapper">
+			                 <form th:action="@{/employee/findByOrderInfo/}" method="post" id="search-form"
+											th:object="${orderInfo}">
+												<div class="search-form-input">
+												<label>Mã KH</label>
+												<input placeholder="Mã KH" type="text" th:field="*{userId}" style="width: 200px; border: 1px solid black;"> 
+												</div>
+												
+												<div class="search-form-input">
+												<label for="">Trạng thái</label>
+												<select th:field="*{status}" class="status-option">
+													<option th:value="1" >Chờ xử lý</option>
+													<option th:value="2" >Đang vận chuyển</option>
+													<option th:value="3" >Đã giao</option>
+													<option th:value="4" >Hoàn trả</option>
+												</select> 
+												</div>
+												
+												<div class="search-form-input">
+												<label for="">Từ</label>
+												<input type="date" id="from-date" th:field="*{fromDate}">
+												</div>
+												
+												<div class="search-form-input">
+												<label for="">Đến</label>
+												<input type="date" id="to-date" th:field="*{toDate}">
+												</div>	
+			                        </form>
+			                 <!--  bảng kết quả  -->
+                       
+                        <p class="error-msg"></p>
+							<div class="result-label">Kết quả: </div>
+						
+						
+												
+							<div class="loader"></div>
+							<div class="no-result"></div>
+							
+			                        
+			               <table id="data-table">
+								<tbody>
+								</tbody>
+							</table>
+			                 
+			                
+			                <div id="parent-paging-block">
+								<div id="paging-block"></div>
+							</div>
+			                 
+			                 
+		                 </div>  
+		               </div>
+	                </div>
+                
+               </div> 
+            </div>
+        </div>
+        
+        
+        <!-- Modal  -->
+         <div class="modal fade " id="detail-order-modal" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered " role="document">
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <h3 class="modal-title">Chi tiết đơn hàng</h3>
+								  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							      </button>
+									 </div>
+								  
+								  
+								  <!--  BEGIN SHOW DETAIL -->
+						<div class="detail-modal" style="margin-left: 15px;">
+								  <!-- Order Id -->
+								  	<div class="order-detail-container">
+								  		<div class="order-id-conatiner">
+								  			<label class="order-id-label">Mã Đơn hàng: 
+								  				<span class="order-id-span"></span>
+								  			</label>
+								  		</div>
+								  	</div>
+								  
+								  <!-- Customer -->
+								  <div class="customer-detail-container">
+								  		<div class="customer-id-conatiner">
+								  			<label class="customer-id-label">Khách hàng: 
+								  				<span class="customer-id-span"></span>
+								  			</label>
+								  		</div>	
+								  	</div>	
+								  	
+								  	<!-- ProductList -->
+								  	<table id="order-detail-table" style="width: 100%">
+										<tbody>
+										</tbody>
+									</table>
+							</div>
+					<div class="footer-detail" style="display: flex; align-items: flex-end; flex-direction: column; margin-right: 50px;">	
+							
+							<!-- Ship Fee -->
+								<div class="productPrice-detail-container m-l">
+								  		<div class="productPrice-id-conatiner">
+								  			<label class="productPrice-id-label">Thành tiền: 
+								  				<span class="productPrice-id-span"></span>
+								  			</label>
+								  		</div>	
+								  	</div>	
+							
+								  <div class="shipFee-detail-container m-l">
+								  		<div class="shipFee-id-conatiner">
+								  			<label class="shipFee-id-label">Phí vận chuyển: 
+								  				<span class="shipFee-id-span"></span>
+								  			</label>
+								  		</div>	
+								  	</div>	
+								  	
+							<!-- Total Price-->
+								
+								
+							
+								  <div class="totalAmount-detail-container m-l">
+								  		<div class="totalAmount-id-conatiner">
+								  			<label class="totalAmount-id-label">Tổng tiền: 
+								  				<span class="totalAmount-id-span"></span>
+								  			</label>
+								  		</div>	
+								  	</div>		
+								  	
+								  	
+								  	<div class="paidAmount-detail-container m-l">
+								  		<div class="paidAmount-id-conatiner">
+								  			<label class="paidAmount-id-label">Đã thanh toán: 
+								  				<span class="paidAmount-id-span"></span>
+								  			</label>
+								  		</div>	
+								  	</div>	
+				</div>	
+							  <!-- END SHOW DETAIL -->
+								 
+								
+								<div class="modal-footer">
+									<div class="right__buttonWrapper">	
+              							<button type="button" class="btn btn-danger" data-dismiss="modal" style="background-color: #ee4d2d; color: #fff">
+              							Trở lại</button>
+              						</div>
+								</div>
+					
+								
+							  </div>
+							</div>
+		 </div>
+						  <!-- END MODAL -->
+    </div>
+</body>
+	<script th:src="@{/markup/ptitshop/styles/bootstrap4/popper.js}"></script>
+	<script th:src="@{/markup/ptitshop/styles/bootstrap4/bootstrap.min.js}"></script>
+	<script th:src="@{/markup/ptitshop/plugins/Isotope/isotope.pkgd.min.js}"></script>
+	<script th:src="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.carousel.js}"></script>
+	<script th:src="@{/markup/ptitshop/plugins/easing/easing.js}"></script>
+	<script th:src="@{/markup/ptitshop/plugins/jquery-ui-1.12.1.custom/jquery-ui.js}"></script>
+	<script th:src="@{/markup/admin/js/main.js}"></script>
+	<script th:src="@{/markup/employee/handleOrder2.js}"></script>   
+</html>

@@ -1,0 +1,123 @@
+.location-title{
+	font-size: 20px !important;
+	color: red;
+}
+.user-information{
+	font-weight: 500;
+}
+.location-detail{
+	display: flex;
+	font-size: 16px;
+	justify-content: space-between;
+	padding: 10px 0px;
+}
+
+.change-location{
+	padding-right: 16px;
+	color: #4080ee !important;
+}
+.change-location-link{
+   display: block;
+   height: 100%;
+
+}
+.change-location:hover {
+	cursor: pointer;
+	opacity: 0.8;
+}
+
+/* MODAL */
+.modal-title{
+	font-size: 20px;
+	color: rgb(117 117 117);
+	font-weight: 300;
+}
+
+.modal-content{
+	margin-top: 150px;
+}
+.modal-content select{
+	padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    width: 30%;
+}
+.add-delivery-address-btn{
+	width: 40%;
+    border: 1px solid #e8e8e8;
+    color: rgb(117 117 117);
+    font-size: 16px;
+    padding: 10px;
+    /* padding: 10px 15px; */
+    margin-left: 15px;
+    background-color: #fff;
+}
+.btn:hover{
+	cursor: pointer;
+	opacity: 0.8;
+}
+
+.address-item, .is-default-btn-container, .choose-address-container{
+	padding: 20px 15px;
+    /* padding: 10px 15px; */
+    border-top: 1px solid #ccc
+}
+.choose-address-container{
+	display: flex;
+	justify-content: space-between;
+}
+.is-default-btn-container {
+	display: flex;
+	font-size: 16px;
+}
+.is-default-btn{
+	margin-right: 10px;
+}
+
+.address-detail{
+	padding: 10px;
+    width: 100%;
+	
+}
+
+#add-address-modal .modal-content{
+	width: 600px;
+}
+/* END MODAL */
+
+
+.price-container{
+	display: flex;
+    justify-content: space-between;
+    margin-right: 16px;
+    
+}
+
+.price-container span{
+	font-size: 14px;
+}
+
+.total-selected-product-item-container{
+	width: 45%;
+}
+
+.payment-type-lable span{
+	font-size: 18px;
+}
+
+.payment-type-span {
+	font-size: 14px !important;
+}
+
+.payment-type-container .active{
+	background-color: #fe4c50;
+	border: none;
+	box-shadow: none;
+	color: #fff;
+}
+
+.lable-payment-type {
+	margin-bottom: 0px;
+	border-radius: 0.2px;
+	border: 0.5px solid #ccc !important;
+}

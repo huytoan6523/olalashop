@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>OLALA Shops</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Colo Shop Template">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/markup/ptitshop/styles/bootstrap4/bootstrap.min.css}">
+<link
+	th:href="@{/markup/ptitshop/plugins/font-awesome-4.7.0/css/font-awesome.min.css}"
+	rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.carousel.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.theme.default.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/animate.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/markup/ptitshop/plugins/jquery-ui-1.12.1.custom/jquery-ui.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/markup/ptitshop/styles/categories_styles.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/markup/ptitshop/styles/categories_responsive.css}">
+</head>
+
+<body>
+
+	<div class="super_container">
+
+		<!-- Header -->
+
+		<!-- Header -->
+	<th:block th:replace="~{share/shop_header::shop_header}"></th:block>
+	<!--  End Header -->
+
+		<div class="container product_section_container">
+			<div class="bg-gray-100 h-screen" style="margin-top: 25%;">
+		      <div class="bg-white p-6  md:mx-auto">
+		        <svg viewBox="0 0 24 24" class="text-green-600 w-16 h-16 mx-auto my-6" style="display: block; height: 60px; color: #16a34a;">
+		            <path fill="currentColor"
+		                d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z">
+		            </path>
+		        </svg>
+		        
+		        <div class="text-center">
+		            <h3 class="md:text-2xl text-base text-gray-900 font-semibold text-center">Đặt hàng thành công</h3>
+		            <p class="text-gray-600 my-2">Đơn hàng của bạn đang được xử lý!</p>
+		            <div class="btn btn-primary" style="background-color: #4f46e5; border-radius: 0px; padding: 10px 25px">
+		                <a href="http://localhost:8080/" class="back-link" style="color: #fff">
+		                    TRỞ LẠI
+		               </a>
+		            </div>
+		        </div>
+		    </div>
+		  </div>
+		</div>
+
+
+	</div>
+	<script th:src="@{/markup/ptitshop/js/jquery-3.2.1.min.js}"></script>
+	<script th:src="@{/markup/ptitshop/styles/bootstrap4/popper.js}"></script>
+	<script th:src="@{/markup/ptitshop/styles/bootstrap4/bootstrap.min.js}"></script>
+	<script
+		th:src="@{/markup/ptitshop/plugins/Isotope/isotope.pkgd.min.js}"></script>
+	<script
+		th:src="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.carousel.js}"></script>
+	<script th:src="@{/markup/ptitshop/plugins/easing/easing.js}"></script>
+	<script
+		th:src="@{/markup/ptitshop/plugins/jquery-ui-1.12.1.custom/jquery-ui.js}"></script>
+	<script th:src="@{/markup/ptitshop/js/categories_custom.js}"></script>
+</body>
+
+</html>

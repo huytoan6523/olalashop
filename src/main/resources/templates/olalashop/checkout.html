@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Thanh Toán</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Colo Shop Template">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/styles/bootstrap4/bootstrap.min.css}">
+<link th:href="@{/markup/ptitshop/plugins/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.carousel.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.theme.default.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/animate.css}">
+<link rel="stylesheet" th:href="@{/markup/ptitshop/plugins/themify-icons/themify-icons.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/jquery-ui-1.12.1.custom/jquery-ui.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/styles/single_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/styles/cart_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/styles/single_responsive.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/styles/checkout.css}">
+</head>
+
+<body>
+
+<div class="super_container">
+
+	<!-- Header -->
+	<th:block th:replace="~{share/shop_header::shop_header}"></th:block>
+	<!--  End Header -->
+
+	<div class="container single_product_container" style="margin-top: 160px;">
+		<div class="row">
+			<div class="col cart-title">
+				<div class="location-title">
+					<i class="fa fa-map-marker" aria-hidden="true"></i>
+					<span>Địa chỉ nhận hàng </span>
+				</div>
+				
+				
+				
+				<div class="location-detail">
+					<div class="user-information">
+						<span th:text="${#authentication.getPrincipal().users.fullName}"></span>
+						<span th:text="${#authentication.getPrincipal().users.phoneNumber}"></span>
+					</div>
+					
+					<input type="hidden" name="delivery_address_id" id="delivery_address_id">
+					<input type="hidden" name="province_id" id="province_id">
+					<input type="hidden" name="district_id" id="district_id">
+					<input type="hidden" name="ward_code" id="ward_code">
+					<div class="location-infomation">
+							
+							
+					</div>
+					
+					<div class="change-location">
+						<a class="change-location-link">Thay đổi</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--  content -->
+		<div class="card">
+            <div class="row">    	
+            	
+            	<!-- Header -->
+            	<div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-2 px-3  " style="width: 100%">
+            		
+            			<div class="cart-checkbox select-all-container" style="padding-left: 16px; display: flex;"  >
+                     		
+                     		<div style="font-size: 24px">Sản phẩm</div>
+                     		
+                     	</div>
+                     	
+                    	
+                    	
+                    	<div class="count-product-item-lable">
+                    		<span style="font-size: 18px;">Tổng số sản phẩm: </span>
+                    		<span id="count-product-item-lable" style="padding-right: 16px; font-size: 18px" th:text="${orderDto.productItems.size}"></span>
+                    	</div>
+                     	
+                    </div>
+            	
+                <div class="col-md-12 list-product-item">
+                    <!-- Content -->
+                	<th:block th:each="e : ${orderDto.productItems}">
+                			
+                			<!-- ProductItem Id -->
+                			<input type="hidden" class="product_item_id" th:value="${e.id}" name="product_item_id">
+                			
+                			<div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-2 px-3 ">
+								<div class="cart-description" style="width: 45%;"> 
+				                      <!-- image -->
+				                        <div class="mr-1"><img  th:src="${e.product.productLine.imgUrl1}" width="100">
+				                        	 
+				                        </div>
+				                        
+				                         <!--  Name -->
+				                        <div class="d-flex flex-column align-items-start product-details" >
+				                        	<span th:text="${e.product.productLine.name}" class="font-weight-bold item-name"></span>
+				                        	
+				                       <!-- Description -->
+				                      <div class="d-flex flex-row product-desc">
+				                        	
+                					<th:block th:each="v : ${e.product.productAttributes}">
+	                					<div class="size mr-1">
+		                					<span th:text="${v.attribute.name}" class="text-grey"></span>
+		                					<span th:text="${v.value}" class="font-weight-bold"></span>
+	                					</div>
+	                				</th:block>
+					  
+								 </div>
+				                        	
+				             </div>
+				                        
+				 </div>
+                        
+                        <!-- Price per Item -->
+                        <div class="price" style="width: 15%; text-align: center;">
+                        	<div th:text="${e.product.price}" class="original_price"></div>
+                            <div th:text="${e.product.actualPrice}"class="product_price"></div>
+                        </div>
+                        
+                    
+                        <!-- Quantity -->
+                        <div class="d-flex flex-row align-items-center qty"  style="text-align: center;">
+                           	<div class="product-item-quantity"  th:text=${e.quantity}></div>
+                        </div>
+                            
+                         <!-- total Price Price -->
+                        <div style="width: 10%; text-align: center;">
+                            <div th:text="${e.quantity*e.product.actualPrice}" class="total_product_price"></div>
+                        </div>
+					</div>
+			</th:block>
+                
+                
+            	</div>
+        		
+            
+        </div>
+                    
+                
+            </div>
+            
+        </div>
+		
+		
+		
+					<!--BEGIN Modal -->
+						  <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered " role="document">
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <h3 class="modal-title">Địa chỉ của tôi</h3>
+								  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							      </button>
+									 </div>
+								  
+								  
+								  <!--  BEGIN SHOW DETAIL -->
+								
+								<div id="my-address">
+								 
+								  
+						
+								</div>
+					  
+																	      
+        							
+								       
+								  
+								  <!-- END SHOW DETAIL -->
+								  
+								 
+								  		<button class = "add-delivery-address-btn btn"><i class="fa fa-plus" aria-hidden="true"></i> 
+								  		Thêm địa chỉ mới</button>
+								 
+								
+								<div class="modal-footer">
+									<div class="right__buttonWrapper">	
+              							<button type="button" class="btn btn-danger" 
+              							data-dismiss="modal" style="background-color: #ee4d2d; color: #fff">Hủy bỏ</button>
+              							<button type="button" class="btn btn-success" id="change-deliver-address-btn">Xác nhận</button>
+              						</div>
+								</div>
+								
+								
+							  </div>
+							</div>
+						  </div>
+						  
+						  
+						  
+						   <div class="modal fade " id="add-address-modal" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered " role="document">
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <h3 class="modal-title">Địa chỉ mới</h3>
+								  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							      </button>
+									 </div>
+								  
+								  
+								  <!--  BEGIN SHOW DETAIL -->
+								  
+								 		<div class="choose-address-container">
+								 			<select name="provinceId" id="provice-select">
+								 				<option value="">----</option>
+								 			
+								 			</select>
+								 			<select name="districtId" id="district-select">
+								 				<option value="">----</option>
+								 			</select>
+								 			<select name="wardCode" id="ward-select">
+								 				<option value="">----</option>			
+								 			</select>		
+								  		</div>
+								  		
+								  		<div class="address-item">
+								 			<p style="margin: 0px;">Địa chỉ cụ thể</p>
+								 			<input type="text" class="address-detail" name="address-detail"/>	
+								 		
+								  		</div>
+								  	
+								  		<div class="is-default-btn-container">
+								 			<input  class="checkmark is-default-btn" name="isDefaultAdress" type="checkbox">
+								 			Đặt làm mặc định
+								  		</div>
+ 									
+								  
+								  <!-- END SHOW DETAIL -->
+								  
+								
+								<div class="modal-footer">
+									<div class="right__buttonWrapper">	
+              							<button type="button" class="btn btn-danger" data-dismiss="modal" style="background-color: #ee4d2d; color: #fff">
+              							Hủy bỏ</button>
+              							
+              							<button type="button" class="btn btn-success" id="add-delivery-btn">Thêm</button>
+              						</div>
+								</div>
+								
+								
+							  </div>
+							</div>
+						  </div>
+						  
+						  
+						  <!-- END MODAL -->
+		
+		
+		
+		
+
+	<!-- Footer -->
+
+	<footer class="footer" style="padding-bottom: 10px;">
+		<div class="container checkout-container">
+			
+				<div class="cart-checkbox select-all-container payment-type-container" style="padding-left: 16px;"  >
+                     		<div class="payment-type-lable">
+                     			<span>Phương thức thanh toán</span>
+
+                     		</div>
+                     		
+                     		<div class="btn-group" data-toggle="buttons">
+							
+								<label class="btn active lable-payment-type">
+									<input type="radio" name="payment_type" value="vnpay" class="payment_type" checked="checked"/> 
+	                     			<span class="payment-type-span">Thanh toán qua bằng VNPAY</span>
+								</label>	
+								
+								<label class="btn lable-payment-type" style="margin-left: 10px;">
+									<input type="radio" name="payment_type" value="cash" class="payment_type"/> 
+	                     			<span class="payment-type-span">Thanh toán khi nhận hàng</span>  
+								</label>						
+	                     	</div>
+                     		
+                     		<div style="margin-top: 10px;">
+                     			<img alt="" th:src="@{/markup/ptitshop/images/vnpay.jpg}" width="100" style="border: 1px solid #ee4d2d;">
+                     		</div>
+                     		
+                     	</div>
+			
+				
+				<div class="total-selected-product-item-container">
+					
+					<!-- shipping -->
+					<div class="price-container">
+						<div>
+							<span>Phí vận chuyển</span>
+						</div>
+						
+						<div>
+						<span id="delivery-fee"></span>
+						</div>
+					</div>
+					
+					<!-- totalProductPrice -->
+					<div class="price-container">
+						<div>
+						<span>Tổng tiền hàng: </span>
+						<span th:text="${orderDto.productItems.size}+'(sản phẩm)'"></span>
+						</div>
+						
+						<div>
+						<span th:text="${orderDto.totalPrice}" id="total-price">0</span>	
+						</div>
+					</div>
+					
+					<div class="price-container">
+						<div>
+						<span>Tổng thanh toán</span>
+						</div>
+						
+						<div>
+						<span id="final-price">0Đ</span>
+						</div>
+					</div>
+					
+					<div style="display: flex; justify-content: flex-end; margin-right: 15px;">
+						<button class="red_button checkout-btn" style="margin: 15px 0 0 0;"><a style="font-size: 18px;">Mua hàng</a></button>
+					</div>
+				</div>
+		</div>
+	</footer>
+
+</div>
+
+<script th:src="@{/markup/ptitshop/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/markup/ptitshop/styles/bootstrap4/popper.js}"></script>
+<script th:src="@{/markup/ptitshop/styles/bootstrap4/bootstrap.min.js}"></script>
+<script th:src="@{/markup/ptitshop/plugins/Isotope/isotope.pkgd.min.js}"></script>
+<script th:src="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.carousel.js}"></script>
+<script th:src="@{/markup/ptitshop/plugins/easing/easing.js}"></script>
+<script th:src="@{/markup/ptitshop/plugins/jquery-ui-1.12.1.custom/jquery-ui.js}"></script>
+
+<!-- handle request -->
+<script th:src="@{/markup/ptitshop/js/checkout.js}"></script> 
+</body>
+
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>OLALA shop</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Colo Shop Template">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/styles/bootstrap4/bootstrap.min.css}">
+<link th:href="@{/markup/ptitshop/plugins/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.carousel.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.theme.default.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/animate.css}">
+<link rel="stylesheet" th:href="@{/markup/ptitshop/plugins/themify-icons/themify-icons.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/plugins/jquery-ui-1.12.1.custom/jquery-ui.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/styles/single_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/markup/ptitshop/styles/single_responsive.css}">
+</head>
+
+<body>
+
+<div class="super_container">
+
+	<!-- Header -->
+	<th:block th:replace="~{share/shop_header::shop_header}"></th:block>
+	<!-- End Header -->
+		<!-- Main Navigation -->
+
+		<div class="main_nav_container">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 text-right">
+						<div class="logo_container">
+							<a th:href="@{/}">OLALA<span>shop</span></a>
+						</div>
+						<nav class="navbar">
+							<ul class="navbar_menu">
+								<li><a th:href="@{/}">home</a></li>
+								<li><a th:href="@{/}">shop</a></li>
+								<li><a th:href="@{/}">promotion</a></li>
+								<li><a th:href="@{/}">pages</a></li>
+								<li><a th:href="@{/}">blog</a></li>
+								<li><a th:href="@{/contact.html}">contact</a></li>
+							</ul>
+							<ul class="navbar_user">
+								<li><a th:href="@{/}"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+								<li class="checkout">
+									<a th:href="@{/}">
+										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+										<span id="checkout_items" class="checkout_items">2</span>
+									</a>
+								</li>
+							</ul>
+							<div class="hamburger_container">
+								<i class="fa fa-bars" aria-hidden="true"></i>
+							</div>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+	<div class="fs_menu_overlay"></div>
+
+	<!-- Hamburger Menu -->
+
+	<div class="hamburger_menu">
+		<div class="hamburger_close"><i class="fa fa-times" aria-hidden="true"></i></div>
+	</div>
+
+	<div class="container single_product_container" style="margin-top: 80px;">
+		<div class="row">
+			<div class="col">
+				<!-- Breadcrumbs -->
+
+				<div class="breadcrumbs d-flex flex-row align-items-center" style="margin-bottom: 20px;">
+					<ul>
+						<li><a th:href="@{/}">Sản phẩm</a></li>
+						
+						<li class="active"><i class="fa fa-angle-right" aria-hidden="true"></i>
+						<a th:text="${productLineDto.name}" th:href="@{#}"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+						
+		
+					</ul>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-7">
+				<div class="single_product_pics">
+					<div class="row">
+						<div class="col-lg-3 thumbnails_col order-lg-1 order-2">
+							<div class="single_product_thumbnails">
+								<ul>
+									<li><img th:src="@{${productLineDto.imgUrl1}}" alt="" th:attr="data-image=${productLineDto.imgUrl1}"></li>
+									<li class="active"><img th:src="@{${productLineDto.imgUrl2}}" alt="" th:attr="data-image=${productLineDto.imgUrl2}"></li>
+									<li><img th:src="@{${productLineDto.imgUrl3}}" alt="" th:attr="data-image=${productLineDto.imgUrl3}"></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-9 image_col order-lg-2 order-1">
+							<div class="single_product_image">
+								<div class="single_product_image_background" th:styleappend ="@{'background-image: url('+${productLineDto.imgUrl2}+') '}"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-5">
+			
+			<!-- product detail -->
+			<form action="/testt" id="product-detail-form" method="post">
+			
+				<input type="hidden" id="productLineId" name="productLineId" th:value="${productLineDto.id}"/>
+				<input type="hidden" name="productLineName" th:value="${productLineDto.name}"/>
+			
+				<div class="product_details">
+					<div class="product_details_title">
+						<h2 th:text="${productLineDto.name}"></h2>
+						<p th:text="${productLineDto.description}"></p>
+					</div>
+					<!-- <div class="free_delivery d-flex flex-row align-items-center justify-content-center">
+						<span class="ti-truck"></span><span>free delivery</span>
+					</div> -->
+					<div class="original_price">$629.99</div>
+					<div class="product_price">$495.00</div>
+					<!-- <ul class="star_rating">
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+					</ul> -->
+					
+					<!--  Product attribute -->
+					<!-- values - size -->
+					<input type="hidden" id="valuesSize" th:value="${productLineDto.attributeDtos.size}"> 
+					
+					<!-- Attribute -->
+					<th:block th:each="attribute : ${productLineDto.attributeDtos}">
+					<div class="product_attribute">
+						
+						<!-- Attribute Name-->
+						<div style="display: inline-block; width: 80px;">
+						<span th:text="${attribute.name}">Attribute</span>
+						</div>	
+							<!-- Attribute Values-->
+							<div class="btn-group" data-toggle="buttons" style="margin-left: 20px;">
+							<th:block  th:each="value : ${attribute.values}" class="attribute-value-container">
+									<label class="btn lable-sort-type"
+										style="min-width: 100px;"
+									>
+										<input type="radio" th:name="${attribute.id}" class="attribute-value" th:value="${value}">
+								   		<span th:text="${value}"
+								   		style="font-size: 14px;"
+								   		>Value</span>
+									</label>			   
+							</th:block>
+							</div>
+					</div>
+					</th:block>
+					
+					<!-- stock -->
+					<div id="stock-container" style="margin-top: 20px;">
+						<span>Sản phẩm có sẵn: &nbsp;</span>
+						<span id="stock"></span>
+					</div>
+					
+					<!-- productId -->
+					<input type="hidden" id="productId" value="">
+					
+					<div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
+						<span>Số lượng:</span>
+						<div class="quantity_selector">
+							<span class="minus"><i class="fa fa-minus" aria-hidden="true"></i></span>
+							<span id="quantity_value">1</span>
+							<span class="plus"><i class="fa fa-plus" aria-hidden="true"></i></span>
+						</div>
+						<div class="red_button add_to_cart_button"><a th:href="@{/user/cart/add-product-item}">Thêm vào giỏ hàng</a></div>
+						<!-- <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div> -->
+					</div>
+				</div>
+					
+					<p id="msg"></p>
+
+			</form>
+				
+				
+			</div>
+		</div>
+
+	</div>
+
+	
+
+<!-- Footer -->
+	<th:block th:replace="~{share/shop_footer::shop_footer}"></th:block>
+	<!-- End Footer -->
+
+
+</div>
+
+<script th:src="@{/markup/ptitshop/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/markup/ptitshop/styles/bootstrap4/popper.js}"></script>
+<script th:src="@{/markup/ptitshop/styles/bootstrap4/bootstrap.min.js}"></script>
+<script th:src="@{/markup/ptitshop/plugins/Isotope/isotope.pkgd.min.js}"></script>
+<script th:src="@{/markup/ptitshop/plugins/OwlCarousel2-2.2.1/owl.carousel.js}"></script>
+<script th:src="@{/markup/ptitshop/plugins/easing/easing.js}"></script>
+<script th:src="@{/markup/ptitshop/plugins/jquery-ui-1.12.1.custom/jquery-ui.js}"></script>
+<script th:src="@{/markup/ptitshop/js/single_custom.js}"></script>
+
+<!-- handle request -->
+<script th:src="@{/markup/ptitshop/js/single2.js}"></script>
+</body>
+
+</html>
