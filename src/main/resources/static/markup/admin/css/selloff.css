@@ -93,3 +93,19 @@ form{
     height: 100%;
     margin-bottom: 20px;
 }
+
+.get__wanted__products{
+    width: 100%;
+    float: left;
+}
+
+.cart_ps{
+    border-radius: 5px;
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+    float: left;
+    font-size: 20px;
+}
+
+

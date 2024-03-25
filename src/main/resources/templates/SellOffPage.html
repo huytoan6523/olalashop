@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,15 +40,23 @@
                         <div class="bill__items__table">
                             <p class="head__tittles">Sản phẩm trong hóa đơn</p>
 
-                            <a th:href="@{/selloff}" class="btn btn-dark">
-                                Thêm sản phẩm
+                            <form action="" method="post" class="get__wanted__products">
+                                <div>
+                                    <p class="form__tittle">Nhập sản phẩm:</p>
+                                    <input type="text" class="no__word">
+                                </div>
+                            </form>
                             </a>
                             <table>
                                 <tr>
                                     <td>Tên sản phẩm</td>
                                     <td>Giá bán</td>
                                     <td>Số lượng</td>
-                                    <td>thay đổi số lượng/xóa</td>
+                                    <td>
+                                        <a class="cart_ps" href="#"><strong>+</strong>   </a>
+                                        <a class="cart_ps" href="#"><strong>-</strong>   </a>
+                                        <a class="cart_ps" href="#"><strong>x</strong>   </a>
+                                    </td>
                                 </tr>
                             </table>
                         </div>
