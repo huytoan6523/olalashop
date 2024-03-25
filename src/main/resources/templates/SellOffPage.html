@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang bán tại quầy</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/markup/admin/css/main.css}">
+    <link rel="stylesheet" th:href="@{/markup/admin/css/selloff.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link  rel="stylesheet" th:href="@{/markup/admin/js/jquery-confirm/jquery-confirm.css}">
+    <link rel="stylesheet" th:href="@{/markup/admin/js/jquery-confirm/jquery-confirm.less}">
+
+    <!--  JS  -->
+    <script th:src="@{/markup/admin/js/jquery-3.6.0.js}"></script>
+    <script th:src="@{/markup/admin/js/jquery.twbsPagination.js}"></script>
+    <!--for  confirm msg -->
+    <script th:src="@{/markup/admin/js/jquery-confirm/jquery-confirm.js}"></script>
+
+</head>
+<body>
+    <div class="wrapper">
+    <div class="container">
+        <div class="dashboard">
+
+            <!--  left MENU -->
+            <th:block th:replace="~{share/admin_left_menu::admin}"></th:block>
+
+
+
+            <div class="right">
+                <div class="right__content">
+                    <div class="right__title">Bảng điều khiển</div>
+                    <p class="right__desc">Bán tại quầy</p>
+
+                    <div class="form__selloff">
+                        <div class="bill__items__table">
+                            <p class="head__tittles">Sản phẩm trong hóa đơn</p>
+
+                            <a th:href="@{/selloff}" class="btn btn-dark">
+                                Thêm sản phẩm
+                            </a>
+                            <table>
+                                <tr>
+                                    <td>Tên sản phẩm</td>
+                                    <td>Giá bán</td>
+                                    <td>Số lượng</td>
+                                    <td>thay đổi số lượng/xóa</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="bill__infos">
+                            <p class="head__tittles">Thông tin hóa đơn</p>
+
+                            <a th:href="@{/selloff}" class="btn btn-dark">
+                                Tạo hóa đơn
+                            </a>
+
+                            <a th:href="@{/selloff}" class="btn btn-dark">
+                                Đổi hóa đơn
+                            </a>
+
+                            <form action="" method="post">
+                                <div>
+                                    <p class="form__tittle">Tên hóa đơn:</p>
+                                    <input type="text" class="no__word" disabled>
+                                </div>
+                                <div>
+                                    <p class="form__tittle">Người thực hiện:</p>
+                                    <input type="text" class="no__word" disabled>
+                                </div>
+                                <div>
+                                    <p class="form__tittle">Khách hàng:</p>
+                                    <input type="text" class="no__word" disabled>
+                                </div>
+
+                                <div>
+                                    <p class="form__tittle">Hình thức thanh toán(nếu có):</p>
+                                    <select class="input__vars">
+                                        <option value="">Tiền mặt</option>
+                                        <option value="">Thẻ tín dụng</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <p class="form__tittle">Tiền khách trả:</p>
+                                    <input type="number">
+                                </div>
+                                <div>
+                                    <p class="form__tittle">Tiền thừa(cái này tùy):</p>
+                                    <input type="number">
+                                </div>
+
+                                <a th:href="@{/selloff}" class="btn btn-dark">
+                                    Thanh toán
+                                </a>
+
+                                <a th:href="@{/selloff}" class="btn btn-dark">
+                                    Hủy hóa đơn
+                                </a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+    <script th:src="@{/markup/admin/js/main.js}"></script>
+</body>
+</html>
