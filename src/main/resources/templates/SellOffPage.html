@@ -64,22 +64,15 @@
                         <div class="bill__infos">
                             <p class="head__tittles">Thông tin hóa đơn</p>
 
-                            <a th:href="@{/selloff}" class="btn btn-dark">
-                                Tạo hóa đơn
-                            </a>
+                            <form th:action="@{/admin/selloff/add}" method="post" modelAttribute="order">
 
-                            <a th:href="@{/selloff}" class="btn btn-dark">
-                                Đổi hóa đơn
-                            </a>
-
-                            <form action="" method="post">
                                 <div>
                                     <p class="form__tittle">Tên hóa đơn:</p>
                                     <input type="text" class="no__word" disabled>
                                 </div>
                                 <div>
                                     <p class="form__tittle">Người thực hiện:</p>
-                                    <input type="text" class="no__word" disabled>
+                                    <span id="performerName" th:text="${performerName}"></span>
                                 </div>
                                 <div>
                                     <p class="form__tittle">Khách hàng:</p>
@@ -103,6 +96,8 @@
                                     <input type="number">
                                 </div>
 
+                                <button type="submit" class="btn btn-dark">Tạo hóa đơn</button>
+
                                 <a th:href="@{/selloff}" class="btn btn-dark">
                                     Thanh toán
                                 </a>
@@ -110,6 +105,8 @@
                                 <a th:href="@{/selloff}" class="btn btn-dark">
                                     Hủy hóa đơn
                                 </a>
+
+
                             </form>
                         </div>
                     </div>

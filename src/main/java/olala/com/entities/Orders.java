@@ -58,7 +58,7 @@ public class Orders extends BaseEntity{
 	@Exclude
 	private DeliveryAddress deliveryAddress;
 
-	@NotNull(message = Constant.Message.NOT_EMPTY)
+
 	@Column(name = "vnp_TxnRef", nullable = false)
 	private String vnpTxnRef;
 
@@ -66,19 +66,19 @@ public class Orders extends BaseEntity{
 	private String orderInfo;
 
 	/* FOR PRICE */
-	@NotNull(message = Constant.Message.NOT_EMPTY)
+
 	@Column(name = "total_amount", nullable = false)
 	private Long totalAmount;
 
-	@NotNull(message = Constant.Message.NOT_EMPTY)
+
 	@Column(name = "delivery_fee", nullable = false)
 	private Long deliveryFee;
 
-	@NotNull(message = Constant.Message.NOT_EMPTY)
+
 	@Column(name = "product_price", nullable = false)
 	private Long productPrice;
 	
-	@NotNull(message = Constant.Message.NOT_EMPTY)
+
 	@Column(name = "paid_amount", nullable = false)
 	private Long paidAmount;
 	
