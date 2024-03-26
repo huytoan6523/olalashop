@@ -70,4 +70,23 @@ public class SellingOffController {
         return "redirect:/admin/selloff/";
     }
 
+    @PostMapping("/update")
+    public String saveBill(
+            @ModelAttribute("orders") Orders orders,
+            Model model,
+            @RequestParam("paymentType") String paymentType
+    ) {
+
+        if (paymentType.equals("Tiền mặt")) {
+            orders.setPaymentType("cash");
+        } else if (paymentType.equals("Thẻ tín dụng")) {
+            orders.setPaymentType("credit_card");
+        }
+        orders.setStatus(1);
+
+        this.ordersRepository.save(orders);
+        
+        return "redirect:/admin/selloff/";
+    }
+
 }
